@@ -1,4 +1,4 @@
-name: ci
+name: CI
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
 
 jobs:
   docker:
+    name: Build Docker images
     runs-on: ubuntu-latest
     steps:
       -
