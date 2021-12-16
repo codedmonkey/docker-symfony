@@ -13,6 +13,9 @@ RUN set -eux; \
     docker-php-ext-install zip; \
     apt-get clean; rm -f /var/lib/apt/lists/*_*
 
+RUN mkdir -p var/cache var/log
+VOLUME /srv/app/var
+
 COPY --from=symfony_composer /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
