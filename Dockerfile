@@ -7,6 +7,12 @@ FROM php:${PHP_VERSION}-fpm AS symfony_php
 
 WORKDIR /srv/app
 
+RUN set -eux; \
+    apt-get update; apt-get install -q -y --no-install-recommends \
+      libzip-dev \
+    docker-php-ext-install zip; \
+    apt-get clean; rm -f /var/lib/apt/lists/*_*
+
 COPY --from=symfony_composer /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
