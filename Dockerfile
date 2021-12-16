@@ -10,7 +10,7 @@ WORKDIR /srv/app
 RUN set -eux; \
     apt-get update; apt-get install -y --no-install-recommends \
       acl \
-      libzip-dev \
+      libzip-dev; \
     docker-php-ext-install zip; \
     apt-get clean; rm -f /var/lib/apt/lists/*_*
 
