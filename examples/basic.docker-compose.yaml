@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      target: app
+    tty: true
+    # Uncomment this line to fall back on the PHP image entrypoint
+    #entrypoint: docker-php-entrypoint
+    volumes:
+      - ./:/srv/app
+
+  http:
+    build:
+      context: .
+      target: http
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/srv/app
