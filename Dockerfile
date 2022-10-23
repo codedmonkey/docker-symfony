@@ -25,7 +25,10 @@ VOLUME /srv/app/var
 COPY --from=symfony_composer /usr/bin/composer /usr/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
-COPY --from=symfonycorp/cli /symfony /usr/bin/symfony
+RUN set -eux; \
+    curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.deb.sh' | bash; \
+    apt-get install symfony-cli; \
+    apt-get clean; rm -f /var/lib/apt/lists/*_*
 
 ENTRYPOINT ["docker-symfony-entrypoint"]
 CMD ["php-fpm"]
