@@ -10,8 +10,10 @@ WORKDIR /srv/app
 RUN set -eux; \
     apt-get update; apt-get install -y --no-install-recommends \
       acl \
+      git \
+      libxslt-dev \
       libzip-dev; \
-    docker-php-ext-install zip; \
+    docker-php-ext-install zip xsl; \
     apt-get clean; rm -f /var/lib/apt/lists/*_*
 
 COPY docker-symfony-entrypoint /usr/local/bin/
