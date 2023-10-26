@@ -13,7 +13,7 @@ RUN set -eux; \
       git \
       libxslt-dev \
       libzip-dev; \
-    docker-php-ext-install zip xsl; \
+    docker-php-ext-install intl xsl zip; \
     apt-get clean; rm -f /var/lib/apt/lists/*_*
 
 COPY docker-symfony-entrypoint /usr/local/bin/
