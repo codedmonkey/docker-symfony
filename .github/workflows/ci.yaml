@@ -27,7 +27,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push 8.2
+        name: Build and push 8.3
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -35,6 +35,17 @@ jobs:
           push: true
           tags: |
             codedmonkey/symfony:latest
+            codedmonkey/symfony:8.3
+      -
+        name: Build and push 8.2
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            PHP_VERSION=8.2
+          tags: |
             codedmonkey/symfony:8.2
       -
         name: Build and push 8.1
@@ -43,6 +54,8 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
+          build-args: |
+            PHP_VERSION=8.1
           tags: codedmonkey/symfony:8.1
       -
         name: Build and push 8.0
